@@ -18,16 +18,17 @@ function App() {
 
     try {
       const res = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch`, {
+        `https://api.spoonacular.com/recipes/complexSearch`,
+        {
           params: {
             query,
             number: 12,
             apiKey: API_KEY,
-          }
+          },
         }
       );
       setRecipes(res.data.results || []);
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setError("Failed to fetch recipes. Please try again.");
       setRecipes([]);
@@ -110,7 +111,10 @@ function App() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
           {recipes.map(({ id, title, image }) => (
             <a
-              href={`https://spoonacular.com/recipes/${title.replace(/ /g, "-")}-${id}`}
+              href={`https://spoonacular.com/recipes/${title.replace(
+                / /g,
+                "-"
+              )}-${id}`}
               target="_blank"
               rel="noopener noreferrer"
               key={id}
@@ -155,5 +159,3 @@ function App() {
 }
 
 export default App;
-
-
