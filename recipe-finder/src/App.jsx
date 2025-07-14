@@ -1,6 +1,7 @@
 // src/App.jsx
 import React, { useState } from "react";
 import axios from "axios";
+import { Hamburger } from 'lucide-react';
 
 function App() {
   const [query, setQuery] = useState("");
@@ -49,15 +50,15 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-yellow-50 via-yellow-100 to-yellow-50 p-6 md:p-12 font-sans">
-      <header className="max-w-5xl mx-auto text-center mb-10">
-        <h1 className="text-5xl font-extrabold text-yellow-700 mb-2 drop-shadow-lg">
+    <div className="min-h-screen min-w-screen bg-gradient-to-b from-white via-yellow-100 to-yellow-300 pt-40">
+      <div className="text-center">
+        <h1 className="text-5xl font-extrabold text-yellow-700 mb-2 drop-shadow-lg ">
           Recipe Finder 🍳
         </h1>
-        <p className="text-yellow-900 text-lg md:text-xl">
+        <p className="text-yellow-900 text-lg md:text-xl mt-5 mb-6">
           Search delicious recipes from Spoonacular API
         </p>
-      </header>
+      </div>
 
       <form
         onSubmit={handleSubmit}
@@ -68,13 +69,13 @@ function App() {
           placeholder="Search recipes (e.g. pasta, chicken)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="flex-grow rounded-lg px-4 py-3 border-2 border-yellow-400 focus:border-yellow-600 focus:ring-yellow-300 outline-none transition"
+          className="flex-grow rounded-lg px-4 py-3 border-2 border-yellow-400 focus:border-yellow-600 focus:ring-yellow-300 outline-none transition bg-black"
         />
         {query && (
           <button
             type="button"
             onClick={clearSearch}
-            className="text-yellow-600 hover:text-yellow-800 font-bold"
+            className=" hover:text-yellow-800 font-bold"
             aria-label="Clear search input"
           >
             ✕
@@ -89,7 +90,7 @@ function App() {
         </button>
       </form>
 
-      <section className="max-w-6xl mx-auto mt-12">
+      <section className="">
         {loading && (
           <div className="flex justify-center mt-16">
             <div className="loader ease-linear rounded-full border-8 border-t-8 border-yellow-500 h-16 w-16"></div>
@@ -103,7 +104,7 @@ function App() {
         )}
 
         {!loading && !error && recipes.length === 0 && (
-          <p className="text-center text-yellow-700 mt-20 text-lg">
+          <p className="text-center text-yellow-700 mt-5 text-lg">
             No recipes found. Try searching for something yummy!
           </p>
         )}
@@ -136,24 +137,6 @@ function App() {
           ))}
         </div>
       </section>
-
-      {/* Loader CSS */}
-      <style>{`
-        .loader {
-          border-top-color: #fbbf24; /* yellow-400 */
-          animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-        /* Line clamp for title */
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;  
-          overflow: hidden;
-        }
-      `}</style>
     </div>
   );
 }
